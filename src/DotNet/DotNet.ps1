@@ -1,15 +1,9 @@
-﻿$dotnetVersions = @("6.0.100", "7.0.100", "8.0.100")
+﻿Import-Module -Name "$PSScriptRoot\AppCheckUtilities.psm1"
 
-function Test-DotNetVersion {
-    param (
-        [string]$Version
-    )
-    $installedVersions = dotnet --list-sdks | ForEach-Object { $_.Split(' ')[0] }
-    return $installedVersions -contains $Version
-}
+$dotnetVersions = @("6.0.100", "7.0.100", "8.0.100")
 
 foreach ($version in $dotnetVersions) {
-    if (Test-DotNetVersion -Version $version) {
+    if (Check-DotNetInstalledVersion -Version $version) {
         Write-Host ".NET SDK $version is already installed."
     } else {
         Write-Host "Installing .NET SDK $version..."
