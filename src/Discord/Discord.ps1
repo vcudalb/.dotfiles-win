@@ -1,15 +1,5 @@
-﻿function Test-DiscordInstalled {
-    $discordPath = Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" |
-            Where-Object { $_.DisplayName -like "*Discord*" } |
-            Select-Object -First 1 -ExpandProperty InstallLocation
-    return $discordPath -ne $null
-}
+﻿Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath "..\Modules\Helpers\AppCheckUtilities.psm1")
 
-if (Test-DiscordInstalled) {
-    Write-Host "Discord is already installed."
-} else {
-    Write-Host "Installing Discord..."
+if (-not (Confirm-AppInstalled -AppName "Discord")) {
     choco install -y discord
 }
-
-refreshenv;

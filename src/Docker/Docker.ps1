@@ -1,8 +1,5 @@
-﻿Import-Module -Name "$PSScriptRoot\AppCheckUtilities.psm1"
+﻿Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath "..\Modules\Helpers\AppCheckUtilities.psm1")
 
-if (Check-AppInstalled -AppName "Docker Desktop") {
-    Write-Host "Docker Desktop is already installed."
-} else {
-    Write-Host "Installing Docker Desktop"
+if (-not (Confirm-AppInstalled -AppName "Docker Desktop")) {
     choco install -y "docker-desktop" --execution-timeout 3600;
 }
