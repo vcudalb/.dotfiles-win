@@ -3,6 +3,8 @@
     @{ Name = "Discord"; Path = "src\Discord\Discord.ps1" },
     @{ Name = "Docker"; Path = "src\Docker\Docker.ps1" },
     @{ Name = "DotNet"; Path = "src\DotNet\DotNet.ps1" }
+    @{ Name = "Skype"; Path = "src\Skype\Skype.ps1" }
+    @{ Name = "Telegram"; Path = "src\Telegram\Telegram.ps1" }
 )
 
 Write-Host "------------- Explore Dotfiles for Windows: Your Guide to Customization and Configuration -------------" -ForegroundColor Cyan;
