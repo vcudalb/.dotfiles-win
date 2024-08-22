@@ -1,31 +1,10 @@
-﻿$scripts = @(
-    @{ Name = "Chocolatey"; Path = "src\Chocolatey\Chocolatey.ps1" },
-    @{ Name = "Discord"; Path = "src\Discord\Discord.ps1" },
-    @{ Name = "Docker"; Path = "src\Docker\Docker.ps1" },
-    @{ Name = "DotNet"; Path = "src\DotNet\DotNet.ps1" }
-    @{ Name = "Skype"; Path = "src\Skype\Skype.ps1" }
-    @{ Name = "Telegram"; Path = "src\Telegram\Telegram.ps1" }
-)
+﻿Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath "\src\Modules\Helpers\InstallAppUtilities.psm1")
 
 Write-Host "------------- Explore Dotfiles for Windows: Your Guide to Customization and Configuration -------------" -ForegroundColor Cyan;
 Write-Host "------------- Kindly avoid using your device while the script is in progress -------------" -ForegroundColor Cyan;
 
-$totalScripts = $scripts.Count
-
-for ($i = 0; $i -lt $totalScripts; $i++) {
-    $script = $scripts[$i]
-    $scriptName = $script.Name
-    $scriptPath = Join-Path -Path $PSScriptRoot -ChildPath $script.Path
-    $percentageCompleted = (($i + 1) / $totalScripts * 100)
-    
-    Write-Progress -Activity "Setting up the Environment" -Status "In Progress" -CurrentOperation "Running $scriptName" -PercentComplete $percentageCompleted
-
-    try {
-        Invoke-Expression $scriptPath
-    } catch {
-        Write-Error "Failed to execute $scriptName. Error: $_"
-    }
-}
+Install-Chocolatey
+Install-Applications
 
 Write-Progress -Activity "Setting up the Environment" -Status "Complete" -CurrentOperation "All scripts executed" -PercentComplete 100
 

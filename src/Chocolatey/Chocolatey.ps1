@@ -24,9 +24,13 @@ function Enable-Chocolatey-Helpers {
     };
 }
 
-# Main script logic
-if (-not (Confirm-ChocolateyInstalled)) {
-    Install-Chocolatey
-    Set-Chocolatey-Configuration
-    Enable-Chocolatey-Helpers
+
+function Install {
+    if (-not (Confirm-ChocolateyInstalled)) {
+        Install-Chocolatey
+        Set-Chocolatey-Configuration
+        Enable-Chocolatey-Helpers
+    }
 }
+
+Export-ModuleMember -Function Install

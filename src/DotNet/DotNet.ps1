@@ -10,7 +10,11 @@ foreach ($version in $dotnetVersions) {
 
 refreshenv;
 
-if (-not (Confirm-DotNetToolInstalled -Version $version)) {
-    dotnet tool install --global dotnet-ef;
+function Install {
+    if (-not (Confirm-DotNetToolInstalled -Version $version)) {
+        dotnet tool install --global dotnet-ef;
+    }
 }
+
+Export-ModuleMember -Function Install
 
