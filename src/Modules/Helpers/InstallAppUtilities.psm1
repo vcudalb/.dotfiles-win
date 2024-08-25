@@ -18,9 +18,29 @@
     }
 }
 
+function Install-Fonts {
+    $srcPath = Join-Path -Path $PSScriptRoot -ChildPath "..\..\"
+    $fontsFolder = Get-ChildItem -Path $srcPath -Directory | Where-Object { $_.Name -eq "Fonts" }
+
+    if ($fontsFolder) {
+        $fontsScriptPath = Join-Path -Path $fontsFolder.FullName -ChildPath "$($fontsFolder.Name).ps1"
+
+        if (Test-Path $fontsScriptPath) {
+            try {
+                . $fontsScriptPath
+                Install
+            } catch {
+                Write-Error "Failed to install Fonts: $_"
+            }
+        } else {
+            Write-Warning "Fonts install script not found: $fontsScriptPath"
+        }
+    }
+}
+
 function Install-Applications {
     $srcPath = Join-Path -Path $PSScriptRoot -ChildPath "..\..\"
-    $folders = Get-ChildItem -Path $srcPath -Directory | Where-Object { $_.Name -ne "Modules" -and $_.Name -ne "Chocolatey" }
+    $folders = Get-ChildItem -Path $srcPath -Directory | Where-Object { $_.Name -ne "Modules" -and $_.Name -ne "Chocolatey" -and $_.Name -ne "Fonts" }
     
     for ($i = 0; $i -lt $folders.Count; $i++) {
         $folder = $folders[$i]
@@ -42,4 +62,5 @@ function Install-Applications {
 }
 
 Export-ModuleMember -Function Install-Chocolatey
+Export-ModuleMember -Function Install-Fonts
 Export-ModuleMember -Function Install-Applications
