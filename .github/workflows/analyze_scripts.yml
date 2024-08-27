@@ -56,6 +56,7 @@ jobs:
           if ($moduleResults.Count -gt 0) {
               Write-Output "Script analysis found issues in .psm1 files:"
               $moduleResults | Format-Table | Out-String | Write-Output
+              $moduleResults | Where-Object { $_.Severity -eq 'Error' } | Set-Content -Path error.log
           } else {
               Write-Output "No issues found in .psm1 files."
           }
@@ -71,4 +72,3 @@ jobs:
                   exit 1
               }
           }
-          continue-on-error: false
