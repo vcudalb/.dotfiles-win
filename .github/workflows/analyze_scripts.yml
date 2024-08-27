@@ -35,7 +35,7 @@ jobs:
       - name: Analyze
         shell: pwsh
         run: |
-          $results = Invoke-ScriptAnalyzer -Path './*.ps1' -Recurse
+          $results = Invoke-ScriptAnalyzer -Path './' -Recurse
           
           if ($results.Count -gt 0) {
               Write-Output "Script analysis found issues in .ps1 files:"
@@ -49,16 +49,4 @@ jobs:
               }
           } else {
               Write-Output "No issues found in .ps1 files."
-          }
-
-      - name: Display Errors
-        shell: pwsh
-        run: |
-          if (Test-Path error.log) {
-              $errors = Get-Content error.log
-              if ($errors) {
-                  Write-Output "Errors found:"
-                  $errors | Write-Output
-                  exit 1
-              }
           }
