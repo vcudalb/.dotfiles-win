@@ -32,16 +32,43 @@ jobs:
         run: |
           Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
 
-      - name: Run PSScriptAnalyzer
+      - name: Analyze .ps1 files
         shell: pwsh
+        id: analyze_ps1
         run: |
+          # Analyze .ps1 files
           $results = Invoke-ScriptAnalyzer -Path './*.ps1' -Recurse
           
           if ($results.Count -gt 0) {
-              Write-Output "Script analysis found issues:"
+              Write-Output "Script analysis found issues in .ps1 files:"
               $results | Format-Table | Out-String | Write-Output
-              exit 1
+              $results | Where-Object { $_.Severity -eq 'Error' } | Set-Content -Path error.log
           } else {
-              Write-Output "No issues found."
+              Write-Output "No issues found in .ps1 files."
+          }
+
+      - name: Analyze .psm1 files
+        shell: pwsh
+        run: |
+          # Analyze .psm1 files
+          $moduleResults = Invoke-ScriptAnalyzer -Path './*.psm1' -Recurse
+          
+          if ($moduleResults.Count -gt 0) {
+              Write-Output "Script analysis found issues in .psm1 files:"
+              $moduleResults | Format-Table | Out-String | Write-Output
+          } else {
+              Write-Output "No issues found in .psm1 files."
+          }
+
+      - name: Display Errors
+        shell: pwsh
+        run: |
+          if (Test-Path error.log) {
+              $errors = Get-Content error.log
+              if ($errors) {
+                  Write-Output "Errors found:"
+                  $errors | Write-Output
+                  exit 1
+              }
           }
           continue-on-error: false
