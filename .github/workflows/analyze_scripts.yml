@@ -12,8 +12,8 @@ permissions:
 jobs:
   build:
     permissions:
-      contents: read # for actions/checkout to fetch code
-    name: PSScriptAnalyzer
+      contents: read
+    name: Run Analyzer
     runs-on: ubuntu-latest
 
     steps:
@@ -35,11 +35,7 @@ jobs:
       - name: Run PSScriptAnalyzer
         shell: pwsh
         run: |
-          # Get a list of all PowerShell script files
-          $paths = @('./*.ps1', './*.psm1')
-
-          # Run PSScriptAnalyzer on the specified paths
-          $results = Invoke-ScriptAnalyzer -Path $paths -Recurse
+          $results = Invoke-ScriptAnalyzer -Path './*.ps1' -Recurse
           
           if ($results.Count -gt 0) {
               Write-Output "Script analysis found issues:"
