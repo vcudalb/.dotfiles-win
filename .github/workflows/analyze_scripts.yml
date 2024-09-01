@@ -1,0 +1,52 @@
+name: Analyze PowerShell Scripts
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    permissions:
+      contents: read
+    name: Run Analyzer
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PowerShell
+        run: |
+          # Install PowerShell
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft-prod.list
+          sudo apt-get update
+          sudo apt-get install -y powershell
+
+      - name: Install PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
+
+      - name: Analyze
+        shell: pwsh
+        run: |
+          $results = Invoke-ScriptAnalyzer -Path './' -Recurse
+          
+          if ($results.Count -gt 0) {
+              Write-Output "Script analysis found issues in .ps1 files:"
+              $results | Format-Table | Out-String | Write-Output
+      
+              $errorResults = $results | Where-Object { $_.Severity -eq 'Error' }
+              if ($errorResults.Count -gt 0) {
+                  Write-Output "Errors found:"
+                  $errorResults | Format-Table | Out-String | Write-Output
+                  exit 1 
+              }
+          } else {
+              Write-Output "No issues found in .ps1 files."
+          }
