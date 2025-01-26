@@ -8,35 +8,29 @@ Clear-Host;
 #                                  Oh my Posh!                                 #
 ################################################################################
 
-Import-Module "oh-my-posh";
-Import-Module "posh-git";
-Import-Module "Terminal-Icons";
-Import-Module "PSReadLine";
 oh-my-posh init pwsh --config "~/.oh-my-posh-custom-theme.omp.json" | Invoke-Expression
-refreshenv
-#Set-PoshPrompt -Theme "~/.oh-my-posh-custom-theme.omp.json";
 
-################################################################################
-#                                  PSReadLine                                  #
-################################################################################
+#################################################################################
+##                                  PSReadLine                                  #
+#################################################################################
+#
+#Set-PSReadlineOption -BellStyle "None";
+#Set-PSReadLineOption -PredictionSource "History";
+#Set-PSReadLineKeyHandler -Chord "Tab" -Function "MenuComplete";
+#
+#Set-PSReadLineOption -Colors @{
+#  "InlinePrediction" = [ConsoleColor]::DarkGray;
+#}
 
-Set-PSReadlineOption -BellStyle "None";
-Set-PSReadLineOption -PredictionSource "History";
-Set-PSReadLineKeyHandler -Chord "Tab" -Function "MenuComplete";
-
-Set-PSReadLineOption -Colors @{
-  "InlinePrediction" = [ConsoleColor]::DarkGray;
-}
-
-################################################################################
-#                                  Chocolatey                                  #
-################################################################################
-
-# Chocolatey profile
-$ChocolateyProfile = Join-Path -Path $env:ChocolateyInstall -ChildPath "helpers" | Join-Path -ChildPath "chocolateyProfile.psm1";
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module $ChocolateyProfile;
-};
+#################################################################################
+##                                  Chocolatey                                  #
+#################################################################################
+#
+## Chocolatey profile
+#$ChocolateyProfile = Join-Path -Path $env:ChocolateyInstall -ChildPath "helpers" | Join-Path -ChildPath "chocolateyProfile.psm1";
+#if (Test-Path($ChocolateyProfile)) {
+#  Import-Module $ChocolateyProfile;
+#};
 
 ################################################################################
 #                        WindowsTerminal Profile Aliases                       #
@@ -78,19 +72,19 @@ function Open-Recycle-Bin {
 }
 Set-Alias -Name "trash" -Value "Open-Recycle-Bin";
 
-################################################################################
-#                          System Maintenance Aliases                          #
-################################################################################
-
-function Update-System {
-  Update-Module;
-  Update-Help -Force;
-  choco upgrade -y "chocolatey";
-  choco upgrade -y all --execution-timeout 7200;
-  wsl sudo apt --yes update;
-  wsl sudo apt --yes upgrade;
-};
-Set-Alias -Name "updsys" -Value "Update-System";
+#################################################################################
+##                          System Maintenance Aliases                          #
+#################################################################################
+#
+#function Update-System {
+#  Update-Module;
+#  Update-Help -Force;
+#  choco upgrade -y "chocolatey";
+#  choco upgrade -y all --execution-timeout 7200;
+#  wsl sudo apt --yes update;
+#  wsl sudo apt --yes upgrade;
+#};
+#Set-Alias -Name "updsys" -Value "Update-System";
 
 ################################################################################
 #                         Environment Variables Aliases                        #
