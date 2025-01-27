@@ -33,6 +33,27 @@ root/
 └── Setup.ps1
 ```
 
+## Supported Applications
+
+The repository supports the installation and configuration of the following applications:
+
+| Application           | Description                                     | Notes                             |
+|-----------------------|-------------------------------------------------|-----------------------------------|
+| **Chocolatey**        | Package manager for Windows                     | Ensures dependency management     |
+| **Discord**           | Voice, video, and text communication platform   | For team collaboration or gaming  |
+| **Docker**            | Containerized application platform              | Includes Docker Desktop           |
+| **Dotnet frameworks** | Frameworks for building .NET applications       | Supports multiple versions        |
+| **Fonts**             | Custom fonts for better UI/UX                   | Installs developer-friendly fonts |
+| **Notepad++**         | Free source code editor and Notepad replacement | Lightweight and fast              |
+| **OhMyPosh**          | Customizable prompt engine for PowerShell       | Enhances terminal aesthetics      |
+| **Postman**           | API testing and collaboration tool              | Useful for developers             |
+| **Rider**             | Cross-platform IDE for .NET development         | Requires JetBrains license        |
+| **Skype**             | Communication tool for video and messaging      | Optional installation             |
+| **Slack**             | Messaging platform for teams                    | Keeps your teams connected        |
+| **Spotify**           | Digital music service                           | For entertainment purposes        |
+| **Telegram**          | Messaging app with focus on speed and security  | Useful for teams and personal use |
+
+
 ## Usage
 
 1. Clone the repository to your local machine or download it:
