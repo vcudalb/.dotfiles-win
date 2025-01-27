@@ -46,7 +46,11 @@ root/
    ./Setup.ps1
    ```
 
-⚠️ WARNING: In case there are exceptions about the file lock <br> Before executing the command please adjust the path:
+> [!CAUTION]  
+> In case there are exceptions about the file lock please execute the command bellow.
+<br>
+> [!WARNING]  
+> Before executing the command please adjust the path
 
 ```powershell
 Get-ChildItem -Path "C:\YourFolderPath" -Recurse -Include "*.ps1", "*.psm1", "*.psm" | ForEach-Object {
