@@ -1,6 +1,10 @@
 # Dotfiles Repository for Windows Customization
 
-This repository simplifies the process of configuring and customizing your Windows environment by automating the installation of applications, fonts, tools, and other settings. The modular approach ensures easy maintenance and scalability.
+![Build and Script Analyser](https://github.com/github/docs/actions/workflows/analyze_scripts.yml/badge.svg)
+
+
+This repository simplifies the process of configuring and customizing your Windows environment by automating the installation of applications, fonts, tools, and other settings. 
+<br>The modular approach ensures easy maintenance and scalability.
 
 ## Features
 
@@ -42,7 +46,7 @@ root/
    ./Setup.ps1
    ```
 
-⚠️ WARNING: In case there are exceptions about the file lock, please execute this command:
+⚠️ WARNING: In case there are exceptions about the file lock <br> Before executing the command please adjust the path:
 
 ```powershell
 Get-ChildItem -Path "C:\YourFolderPath" -Recurse -Include "*.ps1", "*.psm1", "*.psm" | ForEach-Object {
