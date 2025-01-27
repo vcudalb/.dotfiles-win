@@ -48,7 +48,7 @@ root/
 
 > [!CAUTION]  
 > In case there are exceptions about the file lock please execute the command bellow.
-<br>
+
 > [!WARNING]  
 > Before executing the command please adjust the path
 
