@@ -1,6 +1,6 @@
 # Dotfiles Repository for Windows Customization
 
-![Build and Script Analyser](https://github.com/github/docs/actions/workflows/analyze_scripts.yml/badge.svg)
+![Build and Script Analyser](https://github.com/vcudalb/.dotfiles-win/actions/workflows/analyze_scripts.yml/badge.svg)
 
 
 This repository simplifies the process of configuring and customizing your Windows environment by automating the installation of applications, fonts, tools, and other settings. 
