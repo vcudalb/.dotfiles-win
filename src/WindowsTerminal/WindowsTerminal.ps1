@@ -44,7 +44,7 @@ function Open-Close-WindowsTerminal {
   Write-Host "Opening Windows Terminal for 10 seconds:" -ForegroundColor "Green";
   wt new-tab PowerShell -c "Set-ExecutionPolicy Unrestricted;";
 
-  Start-Sleep -Seconds 10;
+  Start-Sleep -Seconds 3;
 
   Write-Host "Closing Windows Terminal:" -ForegroundColor "Green";
   Stop-Process -Name "WindowsTerminal" -Force;

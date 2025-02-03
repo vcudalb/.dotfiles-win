@@ -8,19 +8,21 @@ Clear-Host;
 #                                  Oh my Posh!                                 #
 ################################################################################
 
+Import-Module -Name PSReadLine;
+Import-Module -Name Terminal-Icons
 oh-my-posh init pwsh --config "~/.oh-my-posh-custom-theme.omp.json" | Invoke-Expression
 
 #################################################################################
 ##                                  PSReadLine                                  #
 #################################################################################
-#
-#Set-PSReadlineOption -BellStyle "None";
-#Set-PSReadLineOption -PredictionSource "History";
-#Set-PSReadLineKeyHandler -Chord "Tab" -Function "MenuComplete";
-#
-#Set-PSReadLineOption -Colors @{
-#  "InlinePrediction" = [ConsoleColor]::DarkGray;
-#}
+
+Set-PSReadlineOption -BellStyle "None";
+Set-PSReadLineOption -PredictionSource "History";
+Set-PSReadLineKeyHandler -Chord "Tab" -Function "MenuComplete";
+
+Set-PSReadLineOption -Colors @{
+  "InlinePrediction" = [ConsoleColor]::DarkGray;
+}
 
 #################################################################################
 ##                                  Chocolatey                                  #
