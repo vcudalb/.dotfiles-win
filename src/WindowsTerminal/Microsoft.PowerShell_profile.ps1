@@ -11,6 +11,7 @@ Clear-Host;
 Import-Module -Name PSReadLine;
 Import-Module -Name Terminal-Icons
 oh-my-posh init pwsh --config "~/.oh-my-posh-custom-theme.omp.json" | Invoke-Expression
+Install-Module -Name Terminal-Icons -Repository PSGallery
 
 #################################################################################
 ##                                  PSReadLine                                  #
