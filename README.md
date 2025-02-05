@@ -71,12 +71,15 @@ The repository supports the installation and configuration of the following appl
 > In case there are exceptions about the file lock please execute the command bellow.
 
 > [!WARNING]  
-> Before executing the command please adjust the path
+> Before executing the command please navigate to the Setup.ps1 script location
 
 ```powershell
-Get-ChildItem -Path "C:\YourFolderPath" -Recurse -Include "*.ps1", "*.psm1", "*.psm" | ForEach-Object {
-    Unblock-File -Path $_.FullName -WhatIf
+Get-ChildItem -Path . -Recurse -Filter "*.ps1","*.psm1" | ForEach-Object {
+   if (Test-Path "$($_.FullName):Zone.Identifier") {
+      Remove-Item "$($_.FullName):Zone.Identifier" -Force
+   }
 }
+
 ```
 
 ## How It Works
