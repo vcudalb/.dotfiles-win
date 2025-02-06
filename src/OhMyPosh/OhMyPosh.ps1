@@ -1,6 +1,6 @@
 ﻿function Install {
     choco install oh-my-posh -y
-    choco install -y "nerdfont-hack";
+    choco upgrade oh-my-posh -y --force
 }
 
 Export-ModuleMember -Function Install
