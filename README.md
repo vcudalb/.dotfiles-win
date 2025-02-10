@@ -61,7 +61,7 @@ The repository supports the installation and configuration of the following appl
    https://github.com/vcudalb/.dotfiles-win.git
    ```
 
-2. Navigate to the cloned repository or downloaded content.
+2. Navigate to root folder `dotfiles-win.git` of the cloned repository or downloaded content.
 3. Execute the `Setup.ps1` script in PowerShell:
    ```powershell
    ./Setup.ps1
@@ -71,15 +71,10 @@ The repository supports the installation and configuration of the following appl
 > In case there are exceptions about the file lock please execute the command bellow.
 
 > [!WARNING]  
-> Before executing the command please navigate to the Setup.ps1 script location
+> Before executing the command please navigate to the root directory `dotfiles-win.git`
 
 ```powershell
-Get-ChildItem -Path . -Recurse -Filter "*.ps1","*.psm1" | ForEach-Object {
-   if (Test-Path "$($_.FullName):Zone.Identifier") {
-      Remove-Item "$($_.FullName):Zone.Identifier" -Force
-   }
-}
-
+dir -r | unblock-file
 ```
 
 ## How It Works
