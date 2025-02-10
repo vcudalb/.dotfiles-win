@@ -152,10 +152,10 @@
         {
           "foreground": "#55ffff",
           "properties": {
-            "time_format": "_2,15:04"
+            "time_format": "_2,15:04:05.000"
           },
           "style": "plain",
-          "template": "<#ffffff>[</>\uf073{{ .CurrentDate | date .Format }}<#ffffff>]</>",
+          "template": "<#ffffff>[</>\uf073 {{ .CurrentDate | date .Format }}<#ffffff>]</>",
           "type": "time"
         }
       ],
