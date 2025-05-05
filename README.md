@@ -84,7 +84,7 @@ dir -r | unblock-file
 > Before executing the command please navigate to the root directory `dotfiles-win.git`
 
 ```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned
 ```
 
 ## How It Works
