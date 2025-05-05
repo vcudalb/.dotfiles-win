@@ -77,6 +77,16 @@ The repository supports the installation and configuration of the following appl
 dir -r | unblock-file
 ```
 
+> [!CAUTION]  
+> In case there are exceptions about the Execution Policies please execute the command bellow.
+
+> [!WARNING]  
+> Before executing the command please navigate to the root directory `dotfiles-win.git`
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
 ## How It Works
 
 - The `Setup.ps1` script orchestrates the installation process by invoking functions from modules.
